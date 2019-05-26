@@ -34,6 +34,9 @@ public class RabbitConfig {
     @Value("${spring.rabbitmq.password}")
     private String password;
 
+    @Value("${spring.rabbitmq.virtual-host}")
+    private String vHost;
+
 
     public static final String ITM_GPS_MQ_EXCHANGE = "itm_gps_mq_exchange";
 
@@ -49,7 +52,7 @@ public class RabbitConfig {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory(host,port);
         connectionFactory.setUsername(username);
         connectionFactory.setPassword(password);
-        connectionFactory.setVirtualHost("/");
+        connectionFactory.setVirtualHost(vHost);
         connectionFactory.setPublisherConfirms(true);
         return connectionFactory;
     }
